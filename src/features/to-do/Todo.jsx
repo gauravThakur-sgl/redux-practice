@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addNotes } from "./todoSlice";
+import { addNotes, deleteAllNotes, deleteNotes } from "./todoSlice";
 
 function Todo() {
   const todos = useSelector((state) => state.todo.todos);
@@ -23,7 +23,7 @@ function Todo() {
       setData("");
     }
   }
-  console.log(todos)
+  console.log(todos);
   return (
     <div className="flex flex-col justify-center items-center gap-4 h-screen">
       <h2 className="font-bold text-xl mt-10">Add Notes</h2>
@@ -38,19 +38,33 @@ function Todo() {
               value={data}
               onChange={(e) => setData(e.target.value)}
             ></textarea>
-            <button
-              className="p-2 px-6 border rounded-md font-medium text-blue-500 hover:bg-blue-500 hover:text-white"
-              
-            >
+            <button className="p-2 px-6 border rounded-md font-medium text-blue-500 hover:bg-blue-500 hover:text-white">
               Add
+            </button>
+            <button className="p-2 px-6 border rounded-md font-medium text-red-500 hover:bg-red-500 hover:text-white"
+                onClick={() => dispatch(deleteAllNotes())}
+            >
+              DeleteAll
             </button>
           </div>
         </form>
-      </div>
-      <div className="w-full max-w-md">
-        {todos.map((todo, index) => (
-            <div key={index} className="flex flex-col justify-center items-center">{todo}</div>
-        ))}
+        <div className="w-full max-w-md bg-blue-50 rounded-md">
+          {todos.map((todo, index) => (
+            <div key={index} className="">
+              <div className="flex justify-between items-center p-2">
+                <div className="p-2"> {todo}</div>
+                <div className="">
+                  <button
+                    onClick={() => dispatch(deleteNotes())}
+                    className="p-2 px-6 border rounded-md font-medium text-red-500 hover:bg-red-500 hover:text-white"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
