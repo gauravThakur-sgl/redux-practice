@@ -1,15 +1,17 @@
-import Counter from "./features/counter/Counter"
-import Multiply from "./features/multiplay/Multiply"
-import Todo from "./features/to-do/Todo"
+import { TodoList } from "./components/TodoList"
+// import Counter from "./features/counter/Counter"
+// import Multiply from "./features/multiplay/Multiply"
+// import Todo from "./features/to-do/Todo"
 
 function App() {
 
   return (
     <>
       <div className="">
-        <Todo />
+        {/* <Todo />
         <Counter />
-        <Multiply />
+        <Multiply /> */}
+        <TodoList />
       </div>
     </>
   )
